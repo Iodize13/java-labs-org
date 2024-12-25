@@ -724,7 +724,7 @@ hr{
     display:block;
     position:relative;
     font-size:90%;
-    color:#b3b3b3;
+    color:#000000;
     direction: ltr;
 }
 
@@ -745,12 +745,13 @@ hr{
     overflow-x:hidden;
     overflow-y:scroll;
     height:100%;
-    background:#343131;
+    background:#ffffff;
     z-index:200;
     scrollbar-base-color: #1F1D1D;
     scrollbar-arrow-color: #b3b3b3;
     scrollbar-shadow-color: #1F1D1D;
     scrollbar-track-color : #343131;
+    border-right: 1px solid black;
 }
 
 #table-of-contents h2{
@@ -791,8 +792,8 @@ ul.nav>li.active li.active>a {
 }
 
 ul.nav>li.active>a {
-    background-color: #fcfcfc;
-    color: black !important;
+    background-color: #404040;
+    color: white !important;
     border-bottom:solid 1px #c9c9c9 !important; /* XXX Restrict it to 2nd level */
     border-right:solid 1px #c9c9c9 !important;
     font-weight: bold !important;
