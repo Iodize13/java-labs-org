@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-12-25 Wed 16:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Programming in the Large II: Objects and Classes (Part 1)</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/readtheorg.css"/>
+<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/search.css"/>
+<script type="text/javascript" src="src/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="src/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="src/readtheorg_theme/js/search.js"></script>
+<script type="text/javascript" src="src/readtheorg_theme/js/readtheorg.js"></script>
+<style type="text/css">
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
+:root {
+--font-size-1: 2rem;
+--font-size-2: 1.5rem;
+--font-size-3: 1.15rem;
+--font-size-4: 1rem;
+--font-size-small: 0.8rem;
+--font-size-xsmall: 0.6rem;
+}
+
+html, body {
+padding: 0;
+margin: 0;
+background-color: #fdfdfd;
+font-family: "Source Sans Pro", Helvetica, sans-serif;
+font-weight: 300;
+}
+
+/* Header margin */
+h2 {
+margin-top: 2rem;
+margin-bottom: 1.5rem;
+}
+h3, h4 {
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
+
+::selection {
+background-color: purple;
+color: white;
+}
+
+h1 {
+font-size: var(--font-size-1);
+}
+h2 {
+font-size: var(--font-size-2);
+}
+h3, h4, h5 {
+font-size: var(--font-size-3);
+}
+h1 > .subtitle {
+font-size: var(--font-size-3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-weight: 300;
+letter-spacing: -0.03em;
+}
+
+.outline-2 > h2, #table-of-contents > h2 {
+text-align: center;
+}
+
+/* Table of contents */
+#table-of-contents ul {
+list-style-type: none;
+margin: 0;
+}
+#table-of-contents .tag {
+display: none;
+}
+
+.outline-3 {
+border-bottom: 1px solid #CCC;
+display: grid;
+grid-template-columns: 40fr 60fr;
+}
+
+.outline-2 > h2 {
+grid-row-start: 1;
+grid-row-end: 2;
+}
+.outline-2 {
+grid-row-start: 2;
+grid-row-end: 3;
+}
+
+img {
+max-width: 100%;
+}
+
+/* Code */
+pre {
+margin: 1rem;
+background-color: #EEE;
+padding: 0.5rem;
+border-radius: 0.2rem;
+font-size: var(--font-size-small) !important;
+font-family: "Courier New", monospace;
+}
+
+/* Responsive content positioning */
+@media only screen and (min-width: 750px) {
+.outline-3 {
+margin: 0vh 10vw;
+}
+.outline-text-2 {
+padding: 0vh 10vw;
+}
+}
+
+@media only screen and (max-width: 750px) {
+.outline-3 {
+margin: 0vh 5vw;
+display: block;
+}
+.outline-text-2 {
+padding: 0vh 5vw;
+}
+}
+
+blockquote {
+border-left: 0.2rem solid purple;
+padding-left: 1rem;
+font-style: italic;
+}
+
+p, pre, ol, ul, table, code {
+color: #1A1A1A;
+}
+
+table, blockquote, pre, ol, ul, p, #postamble {
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+color: #0A0A0A;
+}
+
+.tag {
+margin-top: 0.5rem;
+display: block;
+color: white;
+font-size: var(--font-size-xsmall);
+}
+.tag > span {
+font-weight: 400;
+font-size: 0.6rem;
+background-color: purple;
+text-transform: uppercase;
+border-radius: 2px;
+width: fit-content;
+height: auto;
+padding: 1px 5px;
+margin: 1px;
+}
+
+/* Stripe table */
+tr:nth-child(even) {
+background-color: #EEE;
+}
+
+.title {
+padding: 2vh 5vw;
+}
+
+.org-org-meta-line {
+color: purple;
+}
+
+.org-keyword {
+color: purple;
+}
+
+a {
+color: purple;
+}
+
+.underline {
+text-decoration: underline;
+}
+
+.todo {
+color: #7D161A;
+font-weight: 400;
+}
+
+.done {
+color: purple;
+font-weight: 400;
+}
+
+/* Postamble */
+#postamble {
+text-align: center;
+width: 100%;
+}
+#postamble > p {
+display: inline;
+font-size: var(--font-size-4);
+}
+
+.outline-text-2, .outline-text-3, .outline-text-4 {
+max-width: 100%;
+overflow-x: auto;
+}
+</style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:800px;}</style>
+<style> li{max-width:800px;}</style
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Programming in the Large II: Objects and Classes (Part 1)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#summary-of-programming-in-the-large-ii-objects-and-classes-part-1">1. <b>Summary of &ldquo;Programming in the Large II: Objects and Classes (Part 1)&rdquo;</b></a>
+<ul>
+<li><a href="#oop-vs.-task-oriented-programming">1.1. <b>OOP vs. Task-Oriented Programming</b></a></li>
+<li><a href="#oop-basics">1.2. <b>OOP Basics</b></a></li>
+<li><a href="#classes-and-objects">1.3. <b>Classes and Objects</b></a></li>
+<li><a href="#static-vs.-instance-variables-and-methods">1.4. <b>Static vs. Instance Variables and Methods</b></a></li>
+</ul>
+</li>
+<li><a href="#faq-programming-in-the-large-ii---objects-and-classes">2. <b>FAQ: Programming in the Large II - Objects and Classes</b></a>
+<ul>
+<li><a href="#what-is-a-class-in-programming">2.1. <b>1. What is a class in programming?</b></a></li>
+<li><a href="#what-is-an-object">2.2. <b>2. What is an object?</b></a></li>
+<li><a href="#how-do-classes-and-objects-relate">2.3. <b>3. How do classes and objects relate?</b></a></li>
+<li><a href="#what-is-the-difference-between-instance-and-static-variables">2.4. <b>4. What is the difference between instance and static variables?</b></a></li>
+<li><a href="#can-you-give-an-example-of-a-static-variable">2.5. <b>5. Can you give an example of a static variable?</b></a></li>
+<li><a href="#what-is-an-instance-method">2.6. <b>6. What is an instance method?</b></a></li>
+<li><a href="#what-is-a-static-method">2.7. <b>7. What is a static method?</b></a></li>
+<li><a href="#how-do-you-create-an-object-in-java">2.8. <b>8. How do you create an object in Java?</b></a></li>
+<li><a href="#what-are-instance-variables">2.9. <b>9. What are instance variables?</b></a></li>
+<li><a href="#what-is-the-benefit-of-using-oop">2.10. <b>10. What is the benefit of using OOP?</b></a></li>
+</ul>
+</li>
+<li><a href="#org7a0d938">3. ทับศัพท์คำว่าก็อปปี้</a></li>
+<li><a href="#orgca0e375">4. ask gpt which header I should include picture?</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-summary-of-programming-in-the-large-ii-objects-and-classes-part-1" class="outline-2">
+<h2 id="summary-of-programming-in-the-large-ii-objects-and-classes-part-1"><span class="section-number-2">1.</span> <b>Summary of &ldquo;Programming in the Large II: Objects and Classes (Part 1)&rdquo;</b></h2>
+<div class="outline-text-2" id="text-summary-of-programming-in-the-large-ii-objects-and-classes-part-1">
+</div>
+<div id="outline-container-oop-vs.-task-oriented-programming" class="outline-3">
+<h3 id="oop-vs.-task-oriented-programming"><span class="section-number-3">1.1.</span> <b>OOP vs. Task-Oriented Programming</b></h3>
+<div class="outline-text-3" id="text-oop-vs.-task-oriented-programming">
+<ul class="org-ul">
+<li>Traditional programming focuses on tasks and procedures.<br /></li>
+<li>OOP models the real world by focusing on objects that:
+<ul class="org-ul">
+<li>Have behaviors.<br /></li>
+<li>Hold information.<br /></li>
+<li>Interact with one another.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-oop-basics" class="outline-3">
+<h3 id="oop-basics"><span class="section-number-3">1.2.</span> <b>OOP Basics</b></h3>
+<div class="outline-text-3" id="text-oop-basics">
+<ul class="org-ul">
+<li><b>Class</b>: A blueprint for creating objects.<br /></li>
+<li><b>Object</b>: An instance of a class, containing instance variables and
+methods.<br /></li>
+<li><b>Instance Method</b>: A method belonging to an object.<br /></li>
+<li><b>Instance Variable</b>: A variable belonging to an object.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-classes-and-objects" class="outline-3">
+<h3 id="classes-and-objects"><span class="section-number-3">1.3.</span> <b>Classes and Objects</b></h3>
+<div class="outline-text-3" id="text-classes-and-objects">
+<ol class="org-ol">
+<li><b>What is a Class?</b>
+<ul class="org-ul">
+<li>A &ldquo;factory&rdquo; for constructing objects.<br /></li>
+<li>Defines the structure and behavior of objects.<br /></li>
+<li>Objects created from the same class share the same structure but
+have independent data.</li>
+</ul></li>
+<li><b>Class vs. Object</b>
+<ul class="org-ul">
+<li><b>Class</b>: A type.<br /></li>
+<li><b>Object</b>: A specific instance of that type (e.g., <code>String msg;</code>
+where <code>String</code> is a class, and <code>msg</code> is an object).</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-static-vs.-instance-variables-and-methods" class="outline-3">
+<h3 id="static-vs.-instance-variables-and-methods"><span class="section-number-3">1.4.</span> <b>Static vs. Instance Variables and Methods</b></h3>
+<div class="outline-text-3" id="text-static-vs.-instance-variables-and-methods">
+<ul class="org-ul">
+<li><b>Static Variables and Methods (Class Variables/Methods):</b>
+<ul class="org-ul">
+<li>Belong to the class as a whole.<br /></li>
+<li>Shared across all instances.<br /></li>
+<li>Example: <code>UserData.name</code> is a static variable.</li>
+</ul></li>
+<li><b>Instance Variables and Methods:</b>
+<ul class="org-ul">
+<li>Belong to individual objects.<br /></li>
+<li>Each object maintains its own copy.<br /></li>
+<li>Example: `PlayerData jordan</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-faq-programming-in-the-large-ii---objects-and-classes" class="outline-2">
+<h2 id="faq-programming-in-the-large-ii---objects-and-classes"><span class="section-number-2">2.</span> <b>FAQ: Programming in the Large II - Objects and Classes</b></h2>
+<div class="outline-text-2" id="text-faq-programming-in-the-large-ii---objects-and-classes">
+</div>
+<div id="outline-container-what-is-a-class-in-programming" class="outline-3">
+<h3 id="what-is-a-class-in-programming"><span class="section-number-3">2.1.</span> <b>1. What is a class in programming?</b></h3>
+<div class="outline-text-3" id="text-what-is-a-class-in-programming">
+<p>
+A class is a blueprint or factory for creating objects. It defines the
+structure (variables) and behavior (methods) of objects that belong to
+it.
+</p>
+</div>
+</div>
+<div id="outline-container-what-is-an-object" class="outline-3">
+<h3 id="what-is-an-object"><span class="section-number-3">2.2.</span> <b>2. What is an object?</b></h3>
+<div class="outline-text-3" id="text-what-is-an-object">
+<p>
+An object is an instance of a class. It is a concrete representation of
+the class that contains its own set of variables and methods.
+</p>
+</div>
+</div>
+<div id="outline-container-how-do-classes-and-objects-relate" class="outline-3">
+<h3 id="how-do-classes-and-objects-relate"><span class="section-number-3">2.3.</span> <b>3. How do classes and objects relate?</b></h3>
+<div class="outline-text-3" id="text-how-do-classes-and-objects-relate">
+<ul class="org-ul">
+<li><b>Class</b>: Defines the type and blueprint.<br /></li>
+<li><b>Object</b>: A specific value or instance created using the class.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-what-is-the-difference-between-instance-and-static-variables" class="outline-3">
+<h3 id="what-is-the-difference-between-instance-and-static-variables"><span class="section-number-3">2.4.</span> <b>4. What is the difference between instance and static variables?</b></h3>
+<div class="outline-text-3" id="text-what-is-the-difference-between-instance-and-static-variables">
+<ul class="org-ul">
+<li><b>Instance Variables</b>: Belong to an object; each object has its own
+copy.<br /></li>
+<li><b>Static Variables</b>: Belong to the class itself and are shared by all
+objects of the class.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-can-you-give-an-example-of-a-static-variable" class="outline-3">
+<h3 id="can-you-give-an-example-of-a-static-variable"><span class="section-number-3">2.5.</span> <b>5. Can you give an example of a static variable?</b></h3>
+<div class="outline-text-3" id="text-can-you-give-an-example-of-a-static-variable">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #bb9af7;">class</span> <span style="color: #c0caf5;">UserData</span> <span style="color: #a9b1d6;">{</span>
+    <span style="color: #bb9af7;">static</span> <span style="color: #c0caf5;">String</span> <span style="color: #c0caf5;">name</span>; <span style="color: #51587a;">// </span><span style="color: #51587a;">Shared by all instances of UserData</span>
+<span style="color: #a9b1d6;">}</span>
+</pre>
+</div>
+
+<p>
+Here, <code>UserData.name</code> is a static variable accessible without creating
+an object.
+</p>
+</div>
+</div>
+<div id="outline-container-what-is-an-instance-method" class="outline-3">
+<h3 id="what-is-an-instance-method"><span class="section-number-3">2.6.</span> <b>6. What is an instance method?</b></h3>
+<div class="outline-text-3" id="text-what-is-an-instance-method">
+<p>
+An instance method operates on the instance variables of an object and
+is invoked on specific objects.
+</p>
+</div>
+</div>
+<div id="outline-container-what-is-a-static-method" class="outline-3">
+<h3 id="what-is-a-static-method"><span class="section-number-3">2.7.</span> <b>7. What is a static method?</b></h3>
+<div class="outline-text-3" id="text-what-is-a-static-method">
+<p>
+A static method belongs to the class itself and can be called without
+creating an instance. Static methods can only access static variables.
+</p>
+</div>
+</div>
+<div id="outline-container-how-do-you-create-an-object-in-java" class="outline-3">
+<h3 id="how-do-you-create-an-object-in-java"><span class="section-number-3">2.8.</span> <b>8. How do you create an object in Java?</b></h3>
+<div class="outline-text-3" id="text-how-do-you-create-an-object-in-java">
+<p>
+Using the <code>new</code> keyword:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #c0caf5;">PlayerData</span> <span style="color: #c0caf5;">jordan</span> = <span style="color: #bb9af7;">new</span> <span style="color: #c0caf5;">PlayerData</span><span style="color: #a9b1d6;">()</span>;
+</pre>
+</div>
+
+<p>
+Here, <code>jordan</code> is an object of the <code>PlayerData</code> class.
+</p>
+</div>
+</div>
+<div id="outline-container-what-are-instance-variables" class="outline-3">
+<h3 id="what-are-instance-variables"><span class="section-number-3">2.9.</span> <b>9. What are instance variables?</b></h3>
+<div class="outline-text-3" id="text-what-are-instance-variables">
+<p>
+These are variables defined in a class but are specific to each object.
+For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #bb9af7;">class</span> <span style="color: #c0caf5;">PlayerData</span> <span style="color: #a9b1d6;">{</span>
+    <span style="color: #c0caf5;">String</span> <span style="color: #c0caf5;">name</span>; <span style="color: #51587a;">// </span><span style="color: #51587a;">Instance variable</span>
+    <span style="color: #c0caf5;">int</span> <span style="color: #c0caf5;">age</span>;     <span style="color: #51587a;">// </span><span style="color: #51587a;">Instance variable</span>
+<span style="color: #a9b1d6;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-what-is-the-benefit-of-using-oop" class="outline-3">
+<h3 id="what-is-the-benefit-of-using-oop"><span class="section-number-3">2.10.</span> <b>10. What is the benefit of using OOP?</b></h3>
+<div class="outline-text-3" id="text-what-is-the-benefit-of-using-oop">
+<p>
+OOP models real-world entities, making code more intuitive, modular,
+reusable, and easier to maintain compared to task-oriented programming.
+</p>
+
+<p>
+<b><b>สรุป &ldquo;Programming in the Large II: Objects and Classes (Part 1)&rdquo;</b></b>
+</p>
+
+<p>
+<b><b>OOP vs. Task-Oriented Programming</b></b>
+</p>
+<ul class="org-ul">
+<li>การเขียนโปรแกรมแบบดั้งเดิมจะเน้นที่งานและขั้นตอนต่างๆ</li>
+<li>OOP (Object-Oriented Programming) จำลองโลกจริงโดยเน้นที่ <b><b>objects</b></b> ที่:
+<ul class="org-ul">
+<li>มีพฤติกรรม</li>
+<li>เก็บข้อมูล</li>
+<li>โต้ตอบกัน</li>
+</ul></li>
+</ul>
+
+<p>
+<b><b>OOP เบื้องต้น</b></b>
+</p>
+<ul class="org-ul">
+<li><b><b>Class</b></b>: แม่แบบสำหรับการสร้าง objects</li>
+<li><b><b>Object</b></b>: คือ instance ของ class ซึ่งประกอบด้วย instance variables และ methods</li>
+<li><b><b>Instance Method</b></b>: คือ method ที่เป็นของ object</li>
+<li><b><b>Instance Variable</b></b>: คือ variable ที่เป็นของ object</li>
+</ul>
+
+<p>
+<b><b>Classes and Objects</b></b>
+</p>
+<ol class="org-ol">
+<li><b><b>Class คืออะไร?</b></b>
+<ul class="org-ul">
+<li>เป็น &ldquo;โรงงาน&rdquo; สำหรับสร้าง objects</li>
+<li>กำหนดโครงสร้างและพฤติกรรมของ objects</li>
+<li>Objects ที่สร้างจาก class เดียวกันจะแชร์โครงสร้างเดียวกัน แต่มีข้อมูลที่เป็นอิสระ</li>
+</ul></li>
+<li><b><b>Class กับ Object ต่างกันอย่างไร?</b></b>
+<ul class="org-ul">
+<li><b><b>Class</b></b>: เป็นประเภท (type)</li>
+<li><b><b>Object</b></b>: คือ instance เฉพาะของประเภทนั้น (เช่น `String msg;` ที่ `String` คือ class และ `msg` คือ object)</li>
+</ul></li>
+</ol>
+
+<p>
+<b><b>Static vs. Instance Variables and Methods</b></b>
+</p>
+<ul class="org-ul">
+<li><b><b>Static Variables and Methods (Class Variables/Methods)</b></b>:
+<ul class="org-ul">
+<li>เป็นของ class ทั้งหมด</li>
+<li>ใช้ร่วมกันระหว่างทุก instance</li>
+<li>ตัวอย่าง: `UserData.name` คือ static variable</li>
+</ul></li>
+<li><b><b>Instance Variables and Methods</b></b>:
+<ul class="org-ul">
+<li>เป็นของ object แต่ละตัว</li>
+<li>ทุก object จะมีสำเนาของตัวเอง</li>
+<li>ตัวอย่าง: `PlayerData jordan`</li>
+</ul></li>
+</ul>
+
+<p>
+<b><b>FAQ: Programming in the Large II - Objects and Classes</b></b>
+</p>
+
+<ol class="org-ol">
+<li><b><b>Class ในการเขียนโปรแกรมคืออะไร?</b></b>
+<ul class="org-ul">
+<li>Class คือแม่แบบหรือโรงงานสำหรับการสร้าง objects โดยกำหนดโครงสร้าง (variables) และพฤติกรรม (methods) ของ objects ที่เป็นของมัน</li>
+</ul></li>
+
+<li><b><b>Object คืออะไร?</b></b>
+<ul class="org-ul">
+<li>Object คือ instance ของ class เป็นตัวแทนที่เป็นรูปธรรมของ class ซึ่งมีตัวแปรและวิธีการของตัวเอง</li>
+</ul></li>
+
+<li><b><b>Class และ Object เกี่ยวข้องกันอย่างไร?</b></b>
+<ul class="org-ul">
+<li><b><b>Class</b></b>: กำหนดประเภทและแม่แบบ</li>
+<li><b><b>Object</b></b>: ค่าหรือ instance เฉพาะที่สร้างจาก class</li>
+</ul></li>
+
+<li><b><b>ตัวแปร instance และ static ต่างกันอย่างไร?</b></b>
+<ul class="org-ul">
+<li><b><b>Instance Variables</b></b>: เป็นของ object แต่ละตัว โดยแต่ละ object จะมีสำเนาของตัวเอง</li>
+<li><b><b>Static Variables</b></b>: เป็นของ class และใช้ร่วมกันระหว่างทุก object ของ class</li>
+</ul></li>
+
+<li><b><b>สามารถยกตัวอย่างตัวแปร static ได้ไหม?</b></b>
+```java
+class UserData {
+    static String name; // ใช้ร่วมกันระหว่างทุก instance ของ UserData
+}
+```
+ที่นี่ `UserData.name` คือ static variable ซึ่งสามารถเข้าถึงได้โดยไม่ต้องสร้าง object</li>
+
+<li><b><b>Instance Method คืออะไร?</b></b>
+<ul class="org-ul">
+<li>Instance Method ทำงานกับ instance variables ของ object และถูกเรียกใช้บน object เฉพาะ</li>
+</ul></li>
+
+<li><b><b>Static Method คืออะไร?</b></b>
+<ul class="org-ul">
+<li>Static Method เป็นของ class และสามารถเรียกใช้ได้โดยไม่ต้องสร้าง instance โดย static methods จะเข้าถึงได้แค่ static variables</li>
+</ul></li>
+
+<li><p>
+<b><b>จะสร้าง object ใน Java ได้อย่างไร?</b></b>
+</p>
+<ul class="org-ul">
+<li>ใช้คำว่า `new`:</li>
+</ul>
+<p>
+```java
+PlayerData jordan = new PlayerData();
+```
+ที่นี่ `jordan` คือ object ของ class `PlayerData`
+</p></li>
+
+<li><p>
+<b><b>Instance Variables คืออะไร?</b></b>
+</p>
+<ul class="org-ul">
+<li>Instance Variables คือ variables ที่กำหนดใน class แต่มักจะเป็นของแต่ละ object เช่น:</li>
+</ul>
+<p>
+```java
+class PlayerData {
+    String name; <i>/ Instance variable
+    int age;     /</i> Instance variable
+}
+```
+</p></li>
+
+<li><b><b>ข้อดีของการใช้ OOP คืออะไร?</b></b>
+<ul class="org-ul">
+<li>OOP จำลองเอนทิตีในโลกจริง ทำให้โค้ดเข้าใจง่าย เป็นโมดูล ใช้ซ้ำได้ และดูแลรักษาได้ง่ายกว่าเมื่อเทียบกับการเขียนโปรแกรมที่เน้นงานเป็นหลัก</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org7a0d938" class="outline-2">
+<h2 id="org7a0d938"><span class="section-number-2">3.</span> ทับศัพท์คำว่าก็อปปี้</h2>
+</div>
+<div id="outline-container-orgca0e375" class="outline-2">
+<h2 id="orgca0e375"><span class="section-number-2">4.</span> ask gpt which header I should include picture?</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2024-12-25 Wed 16:02</p>
+</div>
+</body>
+</html>

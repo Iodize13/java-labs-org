@@ -1,0 +1,60 @@
+#+title: Bu Oop1
+
+* Agenda
+- OO Programming Concepts
+- Declaring and Creating Objects
+- Constructors
+- Modifiers
+- Instances and Class Variables and Methods
+- Programming with Objects
+* OOP vs. Task
+- Object-oriented programming (OOP) represents an attempt to make programs more closely model the way people think about the world
+-  In the older styles of programming, a programmer identifies a task that needs to be performed in order to solve the problem.
+- But at the heart of OOP, instead of tasks we find objects—entities that have behaviors, that hold information, and that can interact with one another
+* OOP View
+- We can think of an object in standard programming terms as nothing more than a set of variables together with some methods for manipulating those variables.
+- What is a class?
+- What is an object?
+- What is an instance method?
+- What is an instance variable?
+* What is a Class?
+- A class is a kind of factory for constructing objects.
+- Classes are used to create objects
+- Objects are created and destroyed as the program runs
+- There can be many objects with the same structure, if they are created using the same class
+* Class vs. Object
+- A class is a type but the object is a value of that type
+  - String message;
+  - // String is a class and it is also a type
+  - // message is an object that its type is String
+- There can be many objects in the same class
+- An object is a class instance.
+  - String msg1, msg2;
+  - // msg1 is a class instance, msg2 is also a class instance
+* Sample Class UserData
+class UserData {
+            static String name; // static variable
+            static int age; // static variable
+}
+- In a program that uses this class, there is only one copy of each of the variables UserData.name and UserData.age.
+- There can only be one “user,” since we only have memory space to store data about one user.
+* Sample Class PlayerData
+ class PlayerData {
+            String name; // instance variable
+            int age; // instance variable
+ }
+- In this case, there is no such variable as PlayerData.name or PlayerData.age, since name and age are not static members of PlayerData.
+- It can be used to create any number of objects!
+- Each object will have its own variables called name and age
+* Instance Variables and Methods
+- An object that belongs to a class is said to be an instance of that class
+- The variables that the object contains are called instance variables
+- The methods that the object contains are called instance methods.
+- PlayerData jordan;
+- jordan is an object or an instance of class PlayerData
+- jordan.name and jordan.age are instance variables
+* Class Variables and Methods
+-Static member variables are sometimes called class variables
+-Static member methods in a class are sometimes called class methods
+-Static member variables and methods are belong to the class itself, rather than to instances of that class
+-UserData.name and UserData.age are static member variables or class variables

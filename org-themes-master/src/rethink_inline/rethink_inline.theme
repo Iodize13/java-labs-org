@@ -1,0 +1,204 @@
+# Turn off default internal styles
+#+OPTIONS: html-style:nil html5-fancy:t
+
+#+HTML_HEAD: <style type="text/css">
+#+HTML_HEAD: @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
+#+HTML_HEAD: :root {
+#+HTML_HEAD:     --font-size-1: 2rem;
+#+HTML_HEAD:     --font-size-2: 1.5rem;
+#+HTML_HEAD:     --font-size-3: 1.15rem;
+#+HTML_HEAD:     --font-size-4: 1rem;
+#+HTML_HEAD:     --font-size-small: 0.8rem;
+#+HTML_HEAD:     --font-size-xsmall: 0.6rem;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: html, body {
+#+HTML_HEAD:     padding: 0;
+#+HTML_HEAD:     margin: 0;
+#+HTML_HEAD:     background-color: #fdfdfd;
+#+HTML_HEAD:     font-family: "Source Sans Pro", Helvetica, sans-serif;
+#+HTML_HEAD:     font-weight: 300;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: /* Header margin */
+#+HTML_HEAD: h2 {
+#+HTML_HEAD:     margin-top: 2rem;
+#+HTML_HEAD:     margin-bottom: 1.5rem;
+#+HTML_HEAD: }
+#+HTML_HEAD: h3, h4 {
+#+HTML_HEAD:     margin-top: 1rem;
+#+HTML_HEAD:     margin-bottom: 1rem;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: ::selection {
+#+HTML_HEAD:     background-color: purple;
+#+HTML_HEAD:     color: white;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: h1 {
+#+HTML_HEAD:     font-size: var(--font-size-1);
+#+HTML_HEAD: }
+#+HTML_HEAD: h2 {
+#+HTML_HEAD:     font-size: var(--font-size-2);
+#+HTML_HEAD: }
+#+HTML_HEAD: h3, h4, h5 {
+#+HTML_HEAD:     font-size: var(--font-size-3);
+#+HTML_HEAD: }
+#+HTML_HEAD: h1 > .subtitle {
+#+HTML_HEAD:     font-size: var(--font-size-3);
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: h1, h2, h3, h4, h5, h6 {
+#+HTML_HEAD:     font-weight: 300;
+#+HTML_HEAD:     letter-spacing: -0.03em;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .outline-2 > h2, #table-of-contents > h2 {
+#+HTML_HEAD:     text-align: center;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: /* Table of contents */
+#+HTML_HEAD: #table-of-contents ul {
+#+HTML_HEAD:     list-style-type: none;
+#+HTML_HEAD:     margin: 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: #table-of-contents .tag {
+#+HTML_HEAD:     display: none;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .outline-3 {
+#+HTML_HEAD:     border-bottom: 1px solid #CCC;
+#+HTML_HEAD:     display: grid;
+#+HTML_HEAD:     grid-template-columns: 40fr 60fr;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .outline-2 > h2 {
+#+HTML_HEAD:     grid-row-start: 1;
+#+HTML_HEAD:     grid-row-end: 2;
+#+HTML_HEAD: }
+#+HTML_HEAD: .outline-2 {
+#+HTML_HEAD:     grid-row-start: 2;
+#+HTML_HEAD:     grid-row-end: 3;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: img {
+#+HTML_HEAD:     max-width: 100%;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: /* Code */
+#+HTML_HEAD: pre {
+#+HTML_HEAD:     margin: 1rem;
+#+HTML_HEAD:     background-color: #EEE;
+#+HTML_HEAD:     padding: 0.5rem;
+#+HTML_HEAD:     border-radius: 0.2rem;
+#+HTML_HEAD:     font-size: var(--font-size-small) !important;
+#+HTML_HEAD:     font-family: "Courier New", monospace;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: /* Responsive content positioning */
+#+HTML_HEAD: @media only screen and (min-width: 750px) {
+#+HTML_HEAD:     .outline-3 {
+#+HTML_HEAD:         margin: 0vh 10vw;
+#+HTML_HEAD:     }
+#+HTML_HEAD:     .outline-text-2 {
+#+HTML_HEAD:         padding: 0vh 10vw;
+#+HTML_HEAD:     }
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: @media only screen and (max-width: 750px) {
+#+HTML_HEAD:     .outline-3 {
+#+HTML_HEAD:         margin: 0vh 5vw;
+#+HTML_HEAD:         display: block;
+#+HTML_HEAD:     }
+#+HTML_HEAD:     .outline-text-2 {
+#+HTML_HEAD:         padding: 0vh 5vw;
+#+HTML_HEAD:     }
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: blockquote {
+#+HTML_HEAD:     border-left: 0.2rem solid purple;
+#+HTML_HEAD:     padding-left: 1rem;
+#+HTML_HEAD:     font-style: italic;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: p, pre, ol, ul, table, code {
+#+HTML_HEAD:     color: #1A1A1A;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: table, blockquote, pre, ol, ul, p, #postamble {
+#+HTML_HEAD:     margin-top: 1rem;
+#+HTML_HEAD:     margin-bottom: 1rem;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: h1, h2, h3, h4, h5, h6 {
+#+HTML_HEAD:     color: #0A0A0A;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .tag {
+#+HTML_HEAD:     margin-top: 0.5rem;
+#+HTML_HEAD:     display: block;
+#+HTML_HEAD:     color: white;
+#+HTML_HEAD:     font-size: var(--font-size-xsmall);
+#+HTML_HEAD: }
+#+HTML_HEAD: .tag > span {
+#+HTML_HEAD:     font-weight: 400;
+#+HTML_HEAD:     font-size: 0.6rem;
+#+HTML_HEAD:     background-color: purple;
+#+HTML_HEAD:     text-transform: uppercase;
+#+HTML_HEAD:     border-radius: 2px;
+#+HTML_HEAD:     width: fit-content;
+#+HTML_HEAD:     height: auto;
+#+HTML_HEAD:     padding: 1px 5px;
+#+HTML_HEAD:     margin: 1px;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: /* Stripe table */
+#+HTML_HEAD: tr:nth-child(even) {
+#+HTML_HEAD:     background-color: #EEE;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .title {
+#+HTML_HEAD:     padding: 2vh 5vw;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .org-org-meta-line {
+#+HTML_HEAD:     color: purple;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .org-keyword {
+#+HTML_HEAD:     color: purple;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: a {
+#+HTML_HEAD:     color: purple;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .underline {
+#+HTML_HEAD:     text-decoration: underline;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .todo {
+#+HTML_HEAD:     color: #7D161A;
+#+HTML_HEAD:     font-weight: 400;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .done {
+#+HTML_HEAD:     color: purple;
+#+HTML_HEAD:     font-weight: 400;
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: /* Postamble */
+#+HTML_HEAD: #postamble {
+#+HTML_HEAD:     text-align: center;
+#+HTML_HEAD:     width: 100%;
+#+HTML_HEAD: }
+#+HTML_HEAD: #postamble > p {
+#+HTML_HEAD:     display: inline;
+#+HTML_HEAD:     font-size: var(--font-size-4);
+#+HTML_HEAD: }
+#+HTML_HEAD:
+#+HTML_HEAD: .outline-text-2, .outline-text-3, .outline-text-4 {
+#+HTML_HEAD:     max-width: 100%;
+#+HTML_HEAD:     overflow-x: auto;
+#+HTML_HEAD: }
+#+HTML_HEAD: </style>
